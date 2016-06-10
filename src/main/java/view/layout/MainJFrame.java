@@ -17,7 +17,7 @@ public class MainJFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	public MainJFrame() {
-		super("Lista de Usuários");
+		super("CW");
 		
 		JPanel jpBody = new JPanel();
 		jpBody.setLayout(new BorderLayout());

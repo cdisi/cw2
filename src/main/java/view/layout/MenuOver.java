@@ -42,13 +42,13 @@ public class MenuOver extends JMenuBar {
 	
 
 	private void configure() {
-		jmFile = createMenu("Arquivo", 'A');
+		jmFile = createMenu("Dosya", 'A');
 		
-		jmEdit = createMenu("Editar", 'E');
+		jmEdit = createMenu("Düzenle", 'E');
 		
-		jmHelp = createMenu("Ajuda", 'H');
+		jmHelp = createMenu("Hakkýnda", 'H');
 		
-		jmiExit = createMenuItem(jmFile, "Sair", 'S', "close_view",
+		jmiExit = createMenuItem(jmFile, "Çýkýþ", 'S', "close_view",
 				KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
 		
 		
