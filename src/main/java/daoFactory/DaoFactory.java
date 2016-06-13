@@ -2,7 +2,7 @@ package daoFactory;
 
 import java.sql.Connection;
 
-import dao.interfaces.UserDao;
+import dao.interfaces.YeniCihazDao;
 
 public abstract class DaoFactory {
 
@@ -12,7 +12,7 @@ public abstract class DaoFactory {
    * implement these methods.
    */
   public abstract Connection openConnection();	
-  public abstract UserDao getUserDao();
+  public abstract YeniCihazDao getYeniCihazDao();
   
   public static DaoFactory getDatabase() {
       return new Mysql();

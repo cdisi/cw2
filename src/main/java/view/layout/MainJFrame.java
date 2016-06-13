@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import view.users.JTableList;
+import view.yeni_cihaz.JTableList;
 
 
 public class MainJFrame extends JFrame {
 
-	public static final Dimension PREFERREDSIZE = new Dimension(500,300);
+	public static final Dimension PREFERREDSIZE = new Dimension(800,600);
 	
 	private static final long serialVersionUID = 1L;
 	

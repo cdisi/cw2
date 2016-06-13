@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.User;
+import model.YeniCihaz;
 import view.listeners.EventListerner;
-import controllers.users.UserController;
+import controllers.yeni_cihaz.YeniCihazController;
 import controllers.users.listeners.MailEvent;
 import controllers.users.listeners.UserListener;
 
@@ -21,13 +21,16 @@ public class JTableList extends JTable implements EventListerner {
 	public JTableList() {
 		this.setModel(model);
 		this.getTableHeader().setReorderingAllowed(false);
+		this.getColumnModel().getColumn(0).setPreferredWidth(20);
+		this.getColumnModel().getColumn(1).setPreferredWidth(180);
+		this.getColumnModel().getColumn(2).setPreferredWidth(400);
 		loadYeniCihazlar();
 	}
 	
 	public void loadYeniCihazlar(){
 		try {
-			for (User user : UserController.getInstance().allUsers()) {
-				model.insertRow(0, user.toArray());
+			for (YeniCihaz cihaz : YeniCihazController.getInstance().yeniCihazlar()) {
+				model.insertRow(0, cihaz.toArray());
 			}
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(this, "Erro", e.getMessage(), JOptionPane.ERROR_MESSAGE);

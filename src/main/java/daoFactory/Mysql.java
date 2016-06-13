@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import dao.concrete.MysqlUserDao;
-import dao.interfaces.UserDao;
+import dao.concrete.MysqlYeniCihazDao;
+import dao.interfaces.YeniCihazDao;
 
 public class Mysql extends DaoFactory {
 	
@@ -30,7 +30,7 @@ public class Mysql extends DaoFactory {
 	}
 	
 	@Override
-	public UserDao getUserDao() {
-		return new MysqlUserDao();
+	public YeniCihazDao getYeniCihazDao() {
+		return new MysqlYeniCihazDao();
 	}
 }
