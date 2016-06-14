@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.YeniCihaz;
+import model.Uretici;
 import view.listeners.EventListerner;
 import controllers.yeni_cihaz.YeniCihazController;
 import controllers.users.listeners.MailEvent;
@@ -21,8 +22,8 @@ public class JTableList extends JTable implements EventListerner {
 	public JTableList() {
 		this.setModel(model);
 		this.getTableHeader().setReorderingAllowed(false);
-		this.getColumnModel().getColumn(0).setPreferredWidth(20);
-		this.getColumnModel().getColumn(1).setPreferredWidth(180);
+		this.getColumnModel().getColumn(0).setPreferredWidth(50);
+		this.getColumnModel().getColumn(1).setPreferredWidth(150);
 		this.getColumnModel().getColumn(2).setPreferredWidth(400);
 		loadYeniCihazlar();
 	}
@@ -30,7 +31,8 @@ public class JTableList extends JTable implements EventListerner {
 	public void loadYeniCihazlar(){
 		try {
 			for (YeniCihaz cihaz : YeniCihazController.getInstance().yeniCihazlar()) {
-				model.insertRow(0, cihaz.toArray());
+				Uretici uretici = Uretici.findById(cihaz.getUreticiId());
+				model.insertRow(0, new String[] {cihaz.getId().toString(), uretici.getAd(), cihaz.getUrl()});
 			}
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(this, "Erro", e.getMessage(), JOptionPane.ERROR_MESSAGE);

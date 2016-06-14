@@ -12,7 +12,7 @@ import view.yeni_cihaz.JTableList;
 
 public class MainJFrame extends JFrame {
 
-	public static final Dimension PREFERREDSIZE = new Dimension(800,600);
+	public static final Dimension PREFERREDSIZE = new Dimension(700,400);
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -35,15 +35,12 @@ public class MainJFrame extends JFrame {
 	}
 	
 	public static void createAndShowGUI() {
-        //Create and set up the window.
         JFrame frame = new MainJFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(PREFERREDSIZE);
         frame.setPreferredSize(PREFERREDSIZE);
  
-        //Center the frame
         frame.setLocationRelativeTo(null);
-        //Display the window.
         frame.pack();
         frame.setVisible(true);
     }

@@ -44,7 +44,7 @@ public class MenuOver extends JMenuBar {
 	private void configure() {
 		jmFile = createMenu("Dosya", 'A');
 		
-		jmEdit = createMenu("Düzenle", 'E');
+		jmEdit = createMenu("Düzen", 'E');
 		
 		jmHelp = createMenu("Hakkýnda", 'H');
 		
@@ -63,7 +63,7 @@ public class MenuOver extends JMenuBar {
 				KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.ALT_MASK));
 		
 		
-		jmiAbout = createMenuItem(jmHelp, "Sobre", 'S', "about",
+		jmiAbout = createMenuItem(jmHelp, "Hakkýnda", 'S', "about",
 				KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
 	}
 	

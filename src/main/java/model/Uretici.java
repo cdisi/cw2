@@ -1,5 +1,10 @@
 package model;
 
+import java.sql.SQLException;
+
+import dao.interfaces.UreticiDao;
+import daoFactory.DaoFactory;
+
 public class Uretici {
 	
 	private Integer id;
@@ -53,5 +58,13 @@ public class Uretici {
 	public void setAktif(Integer aktif){
 		this.aktif=aktif;
 	}
+
+	public static Uretici findById(Integer id) throws SQLException {
+		return ureticiDAO().findById(id);
+	}	
 	
+	private static UreticiDao ureticiDAO(){
+		DaoFactory dao = DaoFactory.getDatabase();
+		return dao.getUreticiDao();
+	}	
 }

@@ -35,7 +35,7 @@ public class MysqlUreticiDao implements UreticiDao {
 	private Uretici createUretici(ResultSet rset) throws SQLException{
 		Uretici uretici = new Uretici(rset.getString("ad"),rset.getString("logo_url"),rset.getString("gsm_arena_url")
 							 );		
-		uretici.setId(rset.getInt("ad"));
+		uretici.setId(rset.getInt("id"));
 		uretici.setAktif(rset.getInt("aktif"));
 		return uretici;
 	}	
