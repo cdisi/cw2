@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.YeniCihaz;
 import model.Uretici;
+import view.cihaz.Form1;
 import view.listeners.EventListerner;
 import controllers.yeni_cihaz.YeniCihazController;
 import controllers.users.listeners.MailEvent;
@@ -85,9 +86,13 @@ public class JTableList extends JTable implements EventListerner {
 		System.out.println(this.getSelectedRow());
 	}
 	
-	@Override
 	public void cmdAdd() {
-		Form.toggle();
+		if (this.getSelectedRow() != -1) {
+			int row = this.getSelectedRow();
+			Integer cihazId = Integer.parseInt((String) this.getValueAt(row, 0));
+			Form1.toggle();
+		}
+		
 	}
 
 }

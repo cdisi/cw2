@@ -6,8 +6,11 @@ import java.sql.SQLException;
 
 import dao.concrete.MysqlYeniCihazDao;
 import dao.concrete.MysqlUreticiDao;
+import dao.concrete.MysqlCihazDao;
+
 import dao.interfaces.YeniCihazDao;
 import dao.interfaces.UreticiDao;
+import dao.interfaces.CihazDao;
 public class Mysql extends DaoFactory {
 	
 	private static String url = "jdbc:mysql://10.5.0.70:3306/";
@@ -37,5 +40,9 @@ public class Mysql extends DaoFactory {
 	@Override
 	public UreticiDao getUreticiDao() {
 		return new MysqlUreticiDao();
+	}	
+	@Override
+	public CihazDao getCihazDao() {
+		return new MysqlCihazDao();
 	}	
 }
