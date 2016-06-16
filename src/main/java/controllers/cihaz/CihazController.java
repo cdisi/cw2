@@ -16,7 +16,6 @@ public class CihazController {
 	public Cihaz save(Cihaz cihaz) throws SQLException {
 		if (cihaz != null) {
 			cihaz.save();
-			notifyListeners(user);
 		}
 		return cihaz;
 	}	

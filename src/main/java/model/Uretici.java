@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import dao.interfaces.UreticiDao;
 import daoFactory.DaoFactory;
@@ -12,6 +13,10 @@ public class Uretici {
 	private String logoUrl;
 	private String gsmArenaUrl;
 	private Integer aktif;
+	
+	public Uretici(){
+		
+	}
 	
 	public Uretici(String ad, String logoUrl, String gsmArenaUrl){
 		this.ad=ad;
@@ -58,6 +63,14 @@ public class Uretici {
 	public void setAktif(Integer aktif){
 		this.aktif=aktif;
 	}
+	
+	public Uretici[] toArray(){
+		return new Uretici[] {this};
+	}	
+	
+	public static List<Uretici> all() throws SQLException {
+		return ureticiDAO().all();
+	}	
 
 	public static Uretici findById(Integer id) throws SQLException {
 		return ureticiDAO().findById(id);

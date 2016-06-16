@@ -55,8 +55,7 @@ public class Form1 extends JDialog{
 
 		jpForm.setBorder(BorderFactory.createTitledBorder("Yeni Cihaz"));
 
-		jpForm.add(fieldset(new JLabel("Url: "), jtfUrl = new JTextField(40)));
-		jpForm.add(fieldset(new JLabel("Cihaz Adý: "), jtfAd = new JTextField(40)));
+		jpForm.add(fieldset(new JLabel("Url: "), jtfUrl = new JTextField(40), new JLabel("Cihaz Adý: "), jtfAd = new JTextField(40)));
 
 		this.add(jpForm, BorderLayout.CENTER);
 	}
