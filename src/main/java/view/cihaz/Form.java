@@ -23,6 +23,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
@@ -88,8 +90,9 @@ public class Form extends JDialog {
 			contentPanel.add(lblretici, gbc_lblretici);
 		}
 		{
-			UreticiCombBoxModel ureticiCombBoxModel = new UreticiCombBoxModel(jobs);
-			jcbUreticiAdi = new JComboBox(new UreticiCombBoxModel());
+			List<Uretici> ureticiler = uretici.all();
+			UreticiCombBoxModel ureticiCombBoxModel = new UreticiCombBoxModel(ureticiler);
+			jcbUreticiAdi = new JComboBox(ureticiCombBoxModel);
 			GridBagConstraints gbc_jcbUreticiAdi = new GridBagConstraints();
 			gbc_jcbUreticiAdi.anchor = GridBagConstraints.WEST;
 			gbc_jcbUreticiAdi.insets = new Insets(0, 0, 5, 0);
