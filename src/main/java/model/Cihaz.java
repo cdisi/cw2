@@ -9,6 +9,7 @@ public class Cihaz {
 
 	private Integer id;
 	private String ad;
+	private Integer ureticiId;
 	
 	public Cihaz(){
 	}	
@@ -32,6 +33,14 @@ public class Cihaz {
 	public void setAd(String ad){
 		this.ad=ad;
 	}
+	
+	public Integer getUreticiId(){
+		return this.ureticiId;
+	}
+	
+	public void setUreticiId(Integer ureticiId){
+		this.ureticiId=ureticiId;
+	}		
 	
 	private static CihazDao cihazDAO(){
 		DaoFactory dao = DaoFactory.getDatabase();

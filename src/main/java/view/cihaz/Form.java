@@ -31,18 +31,24 @@ import javax.swing.JComboBox;
 public class Form extends JDialog {
 	private static Cihaz cihaz = new Cihaz();
 	private static Uretici uretici = new Uretici();
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel();	
 	private JButton jbKaydet;
 	private JButton jbVazgec;
 	private JTextField jtfUrl;
 	private JTextField jtfAd;
 	private Parser parser ;
 	private JLabel lblretici;
-	private JComboBox jcbUreticiAdi;
+	private JComboBox<Uretici> jcbUretici;
 	/**
 	 * Create the dialog.
 	 */
-	public Form(String cihazUrl) {
+	public Form(String cihazUrl, String ureticiAdi) {
+		try {
+			Uretici secilenUretici = uretici.findByAd(ureticiAdi);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		parser = new Parser(cihazUrl);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
@@ -90,15 +96,24 @@ public class Form extends JDialog {
 			contentPanel.add(lblretici, gbc_lblretici);
 		}
 		{
-			List<Uretici> ureticiler = uretici.all();
-			UreticiCombBoxModel ureticiCombBoxModel = new UreticiCombBoxModel(ureticiler);
-			jcbUreticiAdi = new JComboBox(ureticiCombBoxModel);
+			List<Uretici> ureticiler = null;
+			try {
+				ureticiler = uretici.all();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			UreticiCombBoxModel ureticiCombBoxModel = new UreticiCombBoxModel(ureticiler.toArray(new Uretici[ureticiler.size()]));
+			jcbUretici = new JComboBox<Uretici>(ureticiCombBoxModel);
+			jcbUretici.setRenderer(new UreticiComboBoxRenderer());
+			
+			//jcbUretici.setSelectedItem(anObject);
+			
 			GridBagConstraints gbc_jcbUreticiAdi = new GridBagConstraints();
 			gbc_jcbUreticiAdi.anchor = GridBagConstraints.WEST;
 			gbc_jcbUreticiAdi.insets = new Insets(0, 0, 5, 0);
 			gbc_jcbUreticiAdi.gridx = 1;
 			gbc_jcbUreticiAdi.gridy = 1;
-			contentPanel.add(jcbUreticiAdi, gbc_jcbUreticiAdi);
+			contentPanel.add(jcbUretici, gbc_jcbUreticiAdi);
 		}
 		{
 			JLabel lblCihazAd = new JLabel("Cihaz ad\u0131:");

@@ -76,6 +76,10 @@ public class Uretici {
 		return ureticiDAO().findById(id);
 	}	
 	
+	public static Uretici findByAd(String ad) throws SQLException {
+		return ureticiDAO().findByAd(ad);
+	}		
+	
 	private static UreticiDao ureticiDAO(){
 		DaoFactory dao = DaoFactory.getDatabase();
 		return dao.getUreticiDao();

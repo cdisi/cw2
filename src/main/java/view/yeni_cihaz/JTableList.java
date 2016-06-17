@@ -90,7 +90,8 @@ public class JTableList extends JTable implements EventListerner {
 		if (this.getSelectedRow() != -1) {
 			int row = this.getSelectedRow();
 			String cihazUrl = (String) this.getValueAt(row, 2);
-			new Form(cihazUrl);
+			String ureticiAdi = (String) this.getValueAt(row, 1);
+			new Form(cihazUrl, ureticiAdi);
 		}		
 	}
 

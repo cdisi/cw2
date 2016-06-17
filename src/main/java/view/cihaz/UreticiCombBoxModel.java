@@ -1,15 +1,11 @@
 package view.cihaz;
 
-import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 
 import model.Uretici;
 
 public class UreticiCombBoxModel extends DefaultComboBoxModel<Uretici> {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public UreticiCombBoxModel(Uretici[] ureticiler) {

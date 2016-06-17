@@ -8,4 +8,5 @@ import model.Uretici;
 public interface UreticiDao {
 	List<Uretici> all() throws SQLException;
 	Uretici findById(Integer id) throws SQLException;
+	Uretici findByAd(String ad) throws SQLException;
 }

@@ -15,6 +15,7 @@ import model.YeniCihaz;
 public class MysqlUreticiDao implements UreticiDao {
 	
 	private static final String FIND_BY_ID = "SELECT * FROM uretici WHERE id = ?";		
+	private static final String FIND_BY_AD = "SELECT * FROM uretici WHERE ad = ?";		
 	private static final String ALL = "SELECT * FROM uretici";
 	
 	public List<Uretici> all() throws SQLException {
@@ -39,6 +40,25 @@ public class MysqlUreticiDao implements UreticiDao {
 
 		PreparedStatement pstmt = c.prepareStatement(FIND_BY_ID);
 		pstmt.setInt(1, id);
+		
+		Uretici uretici = null;
+		ResultSet rset = pstmt.executeQuery();
+
+		while (rset.next()){
+			uretici = createUretici(rset);
+		}
+
+		pstmt.close();
+		c.close();
+
+		return uretici;
+	}
+	
+	public Uretici findByAd(String ad) throws SQLException {
+		Connection c = DaoFactory.getDatabase().openConnection();
+
+		PreparedStatement pstmt = c.prepareStatement(FIND_BY_AD);
+		pstmt.setString(1, ad);
 		
 		Uretici uretici = null;
 		ResultSet rset = pstmt.executeQuery();
