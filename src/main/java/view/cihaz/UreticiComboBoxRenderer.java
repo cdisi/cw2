@@ -20,8 +20,8 @@ public class UreticiComboBoxRenderer extends BasicComboBoxRenderer {
      
             if (value instanceof Uretici)
             {
-            	Uretici foo = (Uretici)value;
-                setText( foo.getAd());
+            	Uretici uretici = (Uretici)value;
+                setText( uretici.getAd());
             }
      
             return this;

@@ -8,8 +8,8 @@ public class UreticiCombBoxModel extends DefaultComboBoxModel<Uretici> {
 
 	private static final long serialVersionUID = 1L;
 
-	public UreticiCombBoxModel(Uretici[] ureticiler) {
-        super(ureticiler);
+	public UreticiCombBoxModel() {
+        super();
     }
  
     @Override

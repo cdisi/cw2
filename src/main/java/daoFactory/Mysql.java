@@ -13,11 +13,11 @@ import dao.interfaces.UreticiDao;
 import dao.interfaces.CihazDao;
 public class Mysql extends DaoFactory {
 	
-	private static String url = "jdbc:mysql://10.5.0.70:3306/";
-	private static String database = "cw";
+	private static String url = "jdbc:mysql://localhost:3306/";
+	private static String database = "beta";
 	private static String driver = "com.mysql.jdbc.Driver";
-	private static String user = "zkaya";
-	private static String password = "";
+	private static String user = "root";
+	private static String password = "kaya";
 	
 	public Connection openConnection() {   
 		try {

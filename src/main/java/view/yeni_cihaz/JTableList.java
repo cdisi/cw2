@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.YeniCihaz;
 import model.Uretici;
-import view.cihaz.Form;
+import view.cihaz.CihazView;
 import view.listeners.EventListerner;
 import controllers.yeni_cihaz.YeniCihazController;
 import controllers.users.listeners.MailEvent;
@@ -56,18 +56,23 @@ public class JTableList extends JTable implements EventListerner {
 		}
 		
 	}
+	public void cmdAdd() {
+		if (this.getSelectedRow() != -1) {
+			int row = this.getSelectedRow();
+			String cihazUrl = (String) this.getValueAt(row, 2);
+			String ureticiAdi = (String) this.getValueAt(row, 1);
+			new CihazView(cihazUrl, ureticiAdi);
+		}		
+	}
 
-	@Override
 	public void useradd(MailEvent<User> event) {
 		model.insertRow(0, event.getSource().toArray());
 	}
 
-	@Override
 	public void cmdEdit() {
 		System.out.println(this.getSelectedRow());
 	}
 
-	@Override
 	public void cmdRemove() {
 		if (this.getSelectedRow() != -1) {
 			int row = this.getSelectedRow();
@@ -81,18 +86,12 @@ public class JTableList extends JTable implements EventListerner {
 		}
 	}
 	
-	@Override
-	public void cmdDetails() {
-		System.out.println(this.getSelectedRow());
-	}
 	
-	public void cmdAdd() {
-		if (this.getSelectedRow() != -1) {
-			int row = this.getSelectedRow();
-			String cihazUrl = (String) this.getValueAt(row, 2);
-			String ureticiAdi = (String) this.getValueAt(row, 1);
-			new Form(cihazUrl, ureticiAdi);
-		}		
+
+
+	public void cmdDetails() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

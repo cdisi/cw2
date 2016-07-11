@@ -47,7 +47,7 @@ public class Cihaz {
 		return dao.getCihazDao();
 	}	
 	
-	public void save() throws SQLException{
-		cihazDAO().insert(this);
+	public void save(Cihaz cihaz, Uretici uretici) throws SQLException{
+		cihazDAO().insert(cihaz, uretici);
 	}	
 }

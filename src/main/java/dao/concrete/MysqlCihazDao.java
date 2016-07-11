@@ -7,19 +7,20 @@ import java.sql.SQLException;
 
 import daoFactory.DaoFactory;
 import model.Cihaz;
+import model.Uretici;
 import dao.interfaces.CihazDao;
 
 public class MysqlCihazDao implements CihazDao {
 	private static final String
-	INSERT = "INSERT INTO cihaz (ad) VALUES (?)";
+	INSERT = "INSERT INTO cihaz (ad,uretici_id) VALUES (?,?)";
 	
-	public Cihaz insert(Cihaz cihaz) throws SQLException {
+	public Cihaz insert(Cihaz cihaz, Uretici uretici) throws SQLException {
 		Connection c = DaoFactory.getDatabase().openConnection();
 		
 		PreparedStatement pstmt = c.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
 		pstmt.setString(1, cihaz.getAd());
-
+		pstmt.setInt(2, uretici.getId());
 		pstmt.executeUpdate();
 
 		ResultSet rset = pstmt.getGeneratedKeys();
