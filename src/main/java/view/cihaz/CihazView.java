@@ -23,6 +23,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -44,7 +46,11 @@ public class CihazView extends JDialog {
 	private Parser parser ;
 	private JLabel lblretici;
 	private JComboBox<Uretici> jcbUretici;
-	private JComboBox jcbDuyurulmaYil;
+	private JLabel lblDuyurulma;
+	private JPanel panel;
+	private JComboBox cbDuyurulmaYil;
+	private JComboBox cbDuyurulmaAy;
+	private JLabel lblgBant;
 	/**
 	 * Create the dialog.
 	 */
@@ -66,14 +72,14 @@ public class CihazView extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblUrl = new JLabel("Url:");
 			GridBagConstraints gbc_lblUrl = new GridBagConstraints();
-			gbc_lblUrl.insets = new Insets(0, 0, 0, 5);
+			gbc_lblUrl.insets = new Insets(0, 0, 5, 5);
 			gbc_lblUrl.anchor = GridBagConstraints.WEST;
 			gbc_lblUrl.gridx = 0;
 			gbc_lblUrl.gridy = 0;
@@ -83,7 +89,7 @@ public class CihazView extends JDialog {
 			jtfUrl = new JTextField();
 			jtfUrl.setText(cihazUrl);
 			GridBagConstraints gbc_jtfUrl = new GridBagConstraints();
-			gbc_jtfUrl.insets = new Insets(0, 0, 0, 0);
+			gbc_jtfUrl.insets = new Insets(0, 0, 5, 0);
 			gbc_jtfUrl.fill = GridBagConstraints.HORIZONTAL;
 			gbc_jtfUrl.gridx = 1;
 			gbc_jtfUrl.gridy = 0;
@@ -97,7 +103,7 @@ public class CihazView extends JDialog {
 			lblretici = new JLabel("\u00DCretici:");
 			GridBagConstraints gbc_lblretici = new GridBagConstraints();
 			gbc_lblretici.anchor = GridBagConstraints.WEST;
-			gbc_lblretici.insets = new Insets(0, 0, 0, 5);
+			gbc_lblretici.insets = new Insets(0, 0, 5, 5);
 			gbc_lblretici.gridx = 0;
 			gbc_lblretici.gridy = 1;
 			contentPanel.add(lblretici, gbc_lblretici);
@@ -119,8 +125,8 @@ public class CihazView extends JDialog {
 			}
 			
 			GridBagConstraints gbc_jcbUreticiAdi = new GridBagConstraints();
+			gbc_jcbUreticiAdi.insets = new Insets(0, 0, 5, 0);
 			gbc_jcbUreticiAdi.anchor = GridBagConstraints.WEST;
-			gbc_jcbUreticiAdi.insets = new Insets(0, 0, 0, 5);
 			gbc_jcbUreticiAdi.gridx = 1;
 			gbc_jcbUreticiAdi.gridy = 1;
 			contentPanel.add(jcbUretici, gbc_jcbUreticiAdi);
@@ -129,38 +135,69 @@ public class CihazView extends JDialog {
 			JLabel lblCihazAd = new JLabel("Cihaz ad\u0131:");
 			GridBagConstraints gbc_lblCihazAd = new GridBagConstraints();
 			gbc_lblCihazAd.anchor = GridBagConstraints.WEST;
-			gbc_lblCihazAd.insets = new Insets(0, 0, 0, 5);
+			gbc_lblCihazAd.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCihazAd.gridx = 0;
 			gbc_lblCihazAd.gridy = 2;
 			contentPanel.add(lblCihazAd, gbc_lblCihazAd);
 		}
 		jtfAd = new JTextField();
 		GridBagConstraints gbc_jtfAd = new GridBagConstraints();
+		gbc_jtfAd.insets = new Insets(0, 0, 5, 0);
 		gbc_jtfAd.anchor = GridBagConstraints.WEST;
 		gbc_jtfAd.gridx = 1;
 		gbc_jtfAd.gridy = 2;
 		contentPanel.add(jtfAd, gbc_jtfAd);
 		jtfAd.setColumns(20);
-		jtfAd.setText(cihaz.getAd());
-		
+		jtfAd.setText(cihaz.getAd());		
 		{
-			JLabel lblDuyurulma = new JLabel("Duyurulma:");
+			lblDuyurulma = new JLabel("Duyurulma:");
 			GridBagConstraints gbc_lblDuyurulma = new GridBagConstraints();
 			gbc_lblDuyurulma.anchor = GridBagConstraints.WEST;
-			gbc_lblDuyurulma.insets = new Insets(0, 0, 0, 5);
+			gbc_lblDuyurulma.insets = new Insets(0, 0, 5, 5);
 			gbc_lblDuyurulma.gridx = 0;
 			gbc_lblDuyurulma.gridy = 3;
 			contentPanel.add(lblDuyurulma, gbc_lblDuyurulma);
 		}
-		jcbDuyurulmaYil = new JComboBox();
-		for(int i=1990; i < 2020; i++){
-			jcbDuyurulmaYil.addItem(i);
+		{
+			panel = new JPanel();
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.insets = new Insets(0, 0, 5, 0);
+			gbc_panel.anchor = GridBagConstraints.NORTHWEST;
+			gbc_panel.gridx = 1;
+			gbc_panel.gridy = 3;
+			contentPanel.add(panel, gbc_panel);
+			{
+				cbDuyurulmaYil = new JComboBox();
+				for(int i = 1995; i < 2020; i++){
+					cbDuyurulmaYil.addItem(i);
+					if(parser.duyurulmaYilBul() == i){
+						cbDuyurulmaYil.setSelectedItem(i);;
+					}
+				}
+				panel.add(cbDuyurulmaYil);
+			}
+			{
+				String aylar[]={"Ocak", "Şubat", "Mart ", "Nisan", "Mayıs", "Haziran", "Temmuz", "Agustos", "Eylül", "Ekim ", "Kasım", "Aralık"};
+				cbDuyurulmaAy = new JComboBox(aylar);
+				System.out.println(parser.duyurulmaAyBul());
+				String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+				for(int i=0; i<months.length; i++ ){
+					if(months[i].equals(parser.duyurulmaAyBul())){
+						cbDuyurulmaAy.setSelectedItem(aylar[i]);
+					}
+				}
+				panel.add(cbDuyurulmaAy);
+			}
 		}
-		GridBagConstraints gbc_jcbDuyurulmaYil = new GridBagConstraints();
-		gbc_jcbDuyurulmaYil.anchor = GridBagConstraints.WEST;
-		gbc_jcbDuyurulmaYil.gridx = 1;
-		gbc_jcbDuyurulmaYil.gridy = 3;
-		contentPanel.add(jcbDuyurulmaYil, gbc_jcbDuyurulmaYil);
+		{
+			lblgBant = new JLabel("2G Bant");
+			GridBagConstraints gbc_lblgBant = new GridBagConstraints();
+			gbc_lblgBant.anchor = GridBagConstraints.WEST;
+			gbc_lblgBant.insets = new Insets(0, 0, 0, 5);
+			gbc_lblgBant.gridx = 0;
+			gbc_lblgBant.gridy = 4;
+			contentPanel.add(lblgBant, gbc_lblgBant);
+		}
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -174,7 +211,7 @@ public class CihazView extends JDialog {
 				getRootPane().setDefaultButton(jbKaydet);
 			}
 			{
-				jbVazgec = new JButton("Vazge�");
+				jbVazgec = new JButton("Vazge�");
 				jbVazgec.setActionCommand("Cancel");
 				buttonPane.add(jbVazgec);
 			}
