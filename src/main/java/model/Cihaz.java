@@ -10,6 +10,9 @@ public class Cihaz {
 	private Integer id;
 	private String ad;
 	private Integer ureticiId;
+	private String duyurulma;
+	private String duyurulmaYil;
+	private String duyurulmaAy;
 	
 	public Cihaz(){
 	}	
@@ -40,7 +43,31 @@ public class Cihaz {
 	
 	public void setUreticiId(Integer ureticiId){
 		this.ureticiId=ureticiId;
-	}		
+	}
+	
+	public void setDuyurulmaYil(String y){
+		this.duyurulmaYil=y;
+	}
+	
+	public String getDuyurulmaYil(){
+		return this.duyurulmaYil;
+	}
+	
+	public void setDuyurulmaAy(String a){
+		this.duyurulmaAy=a;
+	}
+	
+	public String getDuyurulmaAy(){
+		return this.duyurulmaAy;
+	}
+	
+	public void setDuyurulma(String d){
+		this.duyurulma=d;
+	}
+	
+	public String getDuyurulma(){
+		return this.duyurulma;
+	}
 	
 	private static CihazDao cihazDAO(){
 		DaoFactory dao = DaoFactory.getDatabase();

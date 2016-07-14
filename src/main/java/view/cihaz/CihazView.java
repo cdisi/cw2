@@ -50,7 +50,8 @@ public class CihazView extends JDialog {
 	private JPanel panel;
 	private JComboBox cbDuyurulmaYil;
 	private JComboBox cbDuyurulmaAy;
-	private JLabel lblgBant;
+	private JLabel lblSim;
+	private JTextField tfSim;
 	/**
 	 * Create the dialog.
 	 */
@@ -96,9 +97,7 @@ public class CihazView extends JDialog {
 			contentPanel.add(jtfUrl, gbc_jtfUrl);
 			jtfUrl.setColumns(10);
 		}
-		{
-			cihaz.setAd(parser.CihazAdiBul());
-		}
+
 		{
 			lblretici = new JLabel("\u00DCretici:");
 			GridBagConstraints gbc_lblretici = new GridBagConstraints();
@@ -115,7 +114,6 @@ public class CihazView extends JDialog {
 				for(Uretici uretici : uretici.all()){
 					if(uretici.getId() == secilenUretici.getId()){
 						jcbUretici.getModel().setSelectedItem(secilenUretici);
-						System.out.println(secilenUretici.getId());
 					}
 					jcbUretici.addItem(uretici);
 					jcbUretici.setRenderer(new UreticiComboBoxRenderer());
@@ -130,6 +128,9 @@ public class CihazView extends JDialog {
 			gbc_jcbUreticiAdi.gridx = 1;
 			gbc_jcbUreticiAdi.gridy = 1;
 			contentPanel.add(jcbUretici, gbc_jcbUreticiAdi);
+		}
+		{
+			cihaz.setAd(parser.CihazAdiBul(secilenUretici));
 		}
 		{
 			JLabel lblCihazAd = new JLabel("Cihaz ad\u0131:");
@@ -168,6 +169,7 @@ public class CihazView extends JDialog {
 			contentPanel.add(panel, gbc_panel);
 			{
 				cbDuyurulmaYil = new JComboBox();
+				cbDuyurulmaYil.setSelectedIndex(-1);
 				for(int i = 1995; i < 2020; i++){
 					cbDuyurulmaYil.addItem(i);
 					if(parser.duyurulmaYilBul() == i){
@@ -179,7 +181,7 @@ public class CihazView extends JDialog {
 			{
 				String aylar[]={"Ocak", "Şubat", "Mart ", "Nisan", "Mayıs", "Haziran", "Temmuz", "Agustos", "Eylül", "Ekim ", "Kasım", "Aralık"};
 				cbDuyurulmaAy = new JComboBox(aylar);
-				System.out.println(parser.duyurulmaAyBul());
+				cbDuyurulmaAy.setSelectedIndex(-1);
 				String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 				for(int i=0; i<months.length; i++ ){
 					if(months[i].equals(parser.duyurulmaAyBul())){
@@ -190,13 +192,22 @@ public class CihazView extends JDialog {
 			}
 		}
 		{
-			lblgBant = new JLabel("2G Bant");
-			GridBagConstraints gbc_lblgBant = new GridBagConstraints();
-			gbc_lblgBant.anchor = GridBagConstraints.WEST;
-			gbc_lblgBant.insets = new Insets(0, 0, 0, 5);
-			gbc_lblgBant.gridx = 0;
-			gbc_lblgBant.gridy = 4;
-			contentPanel.add(lblgBant, gbc_lblgBant);
+			lblSim = new JLabel("SIM");
+			GridBagConstraints gbc_lblSim = new GridBagConstraints();
+			gbc_lblSim.anchor = GridBagConstraints.WEST;
+			gbc_lblSim.insets = new Insets(0, 0, 0, 5);
+			gbc_lblSim.gridx = 0;
+			gbc_lblSim.gridy = 4;
+			contentPanel.add(lblSim, gbc_lblSim);
+		}
+		{
+			tfSim = new JTextField();
+			GridBagConstraints gbc_tfSim = new GridBagConstraints();
+			gbc_tfSim.anchor = GridBagConstraints.WEST;
+			gbc_tfSim.gridx = 1;
+			gbc_tfSim.gridy = 4;
+			contentPanel.add(tfSim, gbc_tfSim);
+			tfSim.setColumns(10);
 		}
 		
 		{
@@ -211,7 +222,7 @@ public class CihazView extends JDialog {
 				getRootPane().setDefaultButton(jbKaydet);
 			}
 			{
-				jbVazgec = new JButton("Vazge�");
+				jbVazgec = new JButton("Vazgec");
 				jbVazgec.setActionCommand("Cancel");
 				buttonPane.add(jbVazgec);
 			}
@@ -223,7 +234,14 @@ public class CihazView extends JDialog {
 		jbKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				secilenUretici = (Uretici) jcbUretici.getModel().getSelectedItem();
-				System.out.println(uretici.getId());
+				if(cbDuyurulmaYil.getSelectedIndex() != -1){
+					cihaz.setDuyurulmaYil(cbDuyurulmaYil.getSelectedItem().toString());
+					cihaz.setDuyurulma(cihaz.getDuyurulmaYil());
+				}
+				if(cbDuyurulmaAy.getSelectedIndex()!= -1){
+					cihaz.setDuyurulmaAy(cbDuyurulmaAy.getSelectedItem().toString());
+					cihaz.setDuyurulma(cihaz.getDuyurulmaYil().toString()+ ", " + cihaz.getDuyurulmaAy());
+				}
 				cmdSave();
 			}
 		});

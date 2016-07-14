@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import model.Uretici;
+
 public class Parser {
 	
 	private Document doc;
@@ -24,8 +26,8 @@ public class Parser {
 		}
 	}
 	 
-	public String CihazAdiBul(){
-		return doc.select("h1.specs-phone-name-title").first().text();
+	public String CihazAdiBul(Uretici uretici){
+		return doc.select("h1.specs-phone-name-title").first().text().replace(uretici.getAd(), "").trim();
 	}
 	
 	public Integer duyurulmaYilBul(){
