@@ -13,6 +13,7 @@ public class Cihaz {
 	private String duyurulma;
 	private String duyurulmaYil;
 	private String duyurulmaAy;
+	private String sim;
 	
 	public Cihaz(){
 	}	
@@ -67,6 +68,14 @@ public class Cihaz {
 	
 	public String getDuyurulma(){
 		return this.duyurulma;
+	}
+	
+	public void setSim(String s){
+		this.sim=s;
+	}
+	
+	public String getSim(){
+		return this.sim;
 	}
 	
 	private static CihazDao cihazDAO(){

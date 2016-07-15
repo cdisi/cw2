@@ -73,9 +73,9 @@ public class CihazView extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblUrl = new JLabel("Url:");
@@ -143,8 +143,9 @@ public class CihazView extends JDialog {
 		}
 		jtfAd = new JTextField();
 		GridBagConstraints gbc_jtfAd = new GridBagConstraints();
-		gbc_jtfAd.insets = new Insets(0, 0, 5, 0);
+		gbc_jtfAd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_jtfAd.anchor = GridBagConstraints.WEST;
+		gbc_jtfAd.insets = new Insets(0, 0, 5, 0);
 		gbc_jtfAd.gridx = 1;
 		gbc_jtfAd.gridy = 2;
 		contentPanel.add(jtfAd, gbc_jtfAd);
@@ -195,7 +196,7 @@ public class CihazView extends JDialog {
 			lblSim = new JLabel("SIM");
 			GridBagConstraints gbc_lblSim = new GridBagConstraints();
 			gbc_lblSim.anchor = GridBagConstraints.WEST;
-			gbc_lblSim.insets = new Insets(0, 0, 0, 5);
+			gbc_lblSim.insets = new Insets(0, 0, 5, 5);
 			gbc_lblSim.gridx = 0;
 			gbc_lblSim.gridy = 4;
 			contentPanel.add(lblSim, gbc_lblSim);
@@ -203,11 +204,14 @@ public class CihazView extends JDialog {
 		{
 			tfSim = new JTextField();
 			GridBagConstraints gbc_tfSim = new GridBagConstraints();
+			gbc_tfSim.fill = GridBagConstraints.HORIZONTAL;
 			gbc_tfSim.anchor = GridBagConstraints.WEST;
+			gbc_tfSim.insets = new Insets(0, 0, 5, 0);
 			gbc_tfSim.gridx = 1;
 			gbc_tfSim.gridy = 4;
 			contentPanel.add(tfSim, gbc_tfSim);
-			tfSim.setColumns(10);
+			tfSim.setColumns(40);
+			tfSim.setText(parser.simBul());
 		}
 		
 		{
@@ -242,6 +246,7 @@ public class CihazView extends JDialog {
 					cihaz.setDuyurulmaAy(cbDuyurulmaAy.getSelectedItem().toString());
 					cihaz.setDuyurulma(cihaz.getDuyurulmaYil().toString()+ ", " + cihaz.getDuyurulmaAy());
 				}
+				cihaz.setSim(tfSim.getText());
 				cmdSave();
 			}
 		});

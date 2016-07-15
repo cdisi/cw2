@@ -52,6 +52,11 @@ public class Parser {
 	    }else{
 	    	return "";
 	    }
-	}	
+	}
+	
+	public String simBul(){
+		String sim = doc.select("a:contains(SIM)").first().parent().nextElementSibling().text().replace("Yes", "Var").replace("No", "Yok").replace("Single", "Tek").replace("Dual", "Çift");		
+		return sim;
+	}
 	
 }
