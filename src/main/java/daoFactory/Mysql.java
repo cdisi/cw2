@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import dao.concrete.MysqlYeniCihazDao;
 import dao.concrete.MysqlUreticiDao;
 import dao.concrete.MysqlCihazDao;
+import dao.concrete.MysqlCihazOzellikAtama;
 
 import dao.interfaces.YeniCihazDao;
 import dao.interfaces.UreticiDao;
 import dao.interfaces.CihazDao;
+import dao.interfaces.CihazOzellikAtamaDao;
+
 public class Mysql extends DaoFactory {
 	
 	private static String url = "jdbc:mysql://10.5.0.81:3306/";
@@ -27,8 +30,8 @@ public class Mysql extends DaoFactory {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception ex){
-			System.err.println(
-				"Não foi possével salvar os dados! O Banco de dados não estão respondendo!");
+			System.err.println(ex.getMessage());
+				
 		}
 		return null;
 	}
@@ -44,5 +47,9 @@ public class Mysql extends DaoFactory {
 	@Override
 	public CihazDao getCihazDao() {
 		return new MysqlCihazDao();
+	}	
+	@Override
+	public CihazOzellikAtamaDao getCihazOzellikAtamaDao() {
+		return new MysqlCihazOzellikAtama();
 	}	
 }

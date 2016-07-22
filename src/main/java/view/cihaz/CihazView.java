@@ -9,8 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controllers.cihaz.CihazController;
+import controllers.cihaz_ozellik_atama.CihazOzellikAtamaController;
 import model.Cihaz;
+import model.CihazOzellikAtama;
 import model.Uretici;
+import model.User;
 import util.Parser;
 
 import java.awt.GridBagLayout;
@@ -23,6 +26,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,6 +41,7 @@ public class CihazView extends JDialog {
 	private static Cihaz cihaz = new Cihaz();
 	private static Uretici uretici = new Uretici();
 	private static Uretici secilenUretici;
+	private static List<CihazOzellikAtama> cihazOzellikAtamaList = new ArrayList<CihazOzellikAtama>();
 	
 	private final JPanel contentPanel = new JPanel();	
 	private JButton jbKaydet;
@@ -52,6 +57,8 @@ public class CihazView extends JDialog {
 	private JComboBox cbDuyurulmaAy;
 	private JLabel lblSim;
 	private JTextField tfSim;
+	private JLabel lblgBant;
+	private JTextField tf2gBant;
 	/**
 	 * Create the dialog.
 	 */
@@ -213,6 +220,25 @@ public class CihazView extends JDialog {
 			tfSim.setColumns(40);
 			tfSim.setText(parser.simBul());
 		}
+		{
+			lblgBant = new JLabel("2G Bant");
+			GridBagConstraints gbc_lblgBant = new GridBagConstraints();
+			gbc_lblgBant.anchor = GridBagConstraints.WEST;
+			gbc_lblgBant.insets = new Insets(0, 0, 0, 5);
+			gbc_lblgBant.gridx = 0;
+			gbc_lblgBant.gridy = 5;
+			contentPanel.add(lblgBant, gbc_lblgBant);
+		}
+		{
+			tf2gBant = new JTextField();
+			GridBagConstraints gbc_tf2gBant = new GridBagConstraints();
+			gbc_tf2gBant.fill = GridBagConstraints.HORIZONTAL;
+			gbc_tf2gBant.gridx = 1;
+			gbc_tf2gBant.gridy = 5;
+			contentPanel.add(tf2gBant, gbc_tf2gBant);
+			tf2gBant.setColumns(10);
+			tf2gBant.setText(parser.ikigBantBul());
+		}
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -247,6 +273,9 @@ public class CihazView extends JDialog {
 					cihaz.setDuyurulma(cihaz.getDuyurulmaYil().toString()+ ", " + cihaz.getDuyurulmaAy());
 				}
 				cihaz.setSim(tfSim.getText());
+				if(!tf2gBant.getText().equals("")){
+					cihazOzellikAtamaList.add(new CihazOzellikAtama(1, tf2gBant.getText().trim()));
+				}
 				cmdSave();
 			}
 		});
@@ -260,7 +289,10 @@ public class CihazView extends JDialog {
 	private void cmdSave(){
 		try {			
 			CihazController.getInstance().save(cihaz,secilenUretici);
-			JOptionPane.showMessageDialog(this, "Usuário Salvo Com Sucesso", "", JOptionPane.INFORMATION_MESSAGE);
+			for(CihazOzellikAtama cihazOzellikAtama : cihazOzellikAtamaList){
+				CihazOzellikAtamaController.getInstance().save(cihaz, cihazOzellikAtama);
+			}
+			JOptionPane.showMessageDialog(this, "Başarılı", "", JOptionPane.INFORMATION_MESSAGE);
 			dispose();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

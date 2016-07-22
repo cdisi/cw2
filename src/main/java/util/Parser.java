@@ -58,5 +58,9 @@ public class Parser {
 		String sim = doc.select("a:contains(SIM)").first().parent().nextElementSibling().text().replace("Yes", "Var").replace("No", "Yok").replace("Single", "Tek").replace("Dual", "Çift");		
 		return sim;
 	}
+
+	public String ikigBantBul(){
+		return doc.select("a:contains(2G bands)").first().parent().nextElementSibling().text();
+	}
 	
 }

@@ -16,7 +16,7 @@ public class CihazController {
 	
 	public Cihaz save(Cihaz cihaz, Uretici uretici) throws SQLException {
 		if (cihaz != null) {
-			cihaz.save(cihaz, uretici);
+			cihaz.save(cihaz, uretici);			
 		}
 		return cihaz;
 	}	
