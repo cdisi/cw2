@@ -13,8 +13,8 @@ import controllers.cihaz_ozellik_atama.CihazOzellikAtamaController;
 import model.Cihaz;
 import model.CihazOzellikAtama;
 import model.Uretici;
-import model.User;
 import util.Parser;
+import view.yeni_cihaz.YeniCihazTableList;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -137,7 +137,9 @@ public class CihazView extends JDialog {
 			contentPanel.add(jcbUretici, gbc_jcbUreticiAdi);
 		}
 		{
+			
 			cihaz.setAd(parser.CihazAdiBul(secilenUretici));
+			
 		}
 		{
 			JLabel lblCihazAd = new JLabel("Cihaz ad\u0131:");
@@ -289,6 +291,7 @@ public class CihazView extends JDialog {
 	private void cmdSave(){
 		try {			
 			CihazController.getInstance().save(cihaz,secilenUretici);
+			//System.out.println(cihazOzellikAtamaList);
 			for(CihazOzellikAtama cihazOzellikAtama : cihazOzellikAtamaList){
 				CihazOzellikAtamaController.getInstance().save(cihaz, cihazOzellikAtama);
 			}

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import view.yeni_cihaz.JTableList;
+import view.yeni_cihaz.YeniCihazTableList;
 
 
 public class MainJFrame extends JFrame {
@@ -23,7 +23,7 @@ public class MainJFrame extends JFrame {
 		jpBody.setLayout(new BorderLayout());
 		
 		JScrollPane jspList = new JScrollPane();
-		JTableList jTableList = new JTableList();
+		YeniCihazTableList jTableList = new YeniCihazTableList();
 		jspList.setViewportView(jTableList);
 		
 		jpBody.add(new Options(jTableList), BorderLayout.SOUTH);

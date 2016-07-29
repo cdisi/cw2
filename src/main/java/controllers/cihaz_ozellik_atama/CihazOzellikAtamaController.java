@@ -16,8 +16,11 @@ public class CihazOzellikAtamaController {
 	}	
 	
 	public Cihaz save(Cihaz cihaz, CihazOzellikAtama cihazOzellikAtama) throws SQLException {
-		if (cihazOzellikAtama != null) {
-			cihazOzellikAtama.save(cihaz, cihazOzellikAtama);			
+		System.out.println(cihaz.getId());
+		if (cihazOzellikAtama.find(cihaz, cihazOzellikAtama)) {
+			cihazOzellikAtama.update(cihaz, cihazOzellikAtama);			
+		}else{
+			cihazOzellikAtama.insert(cihaz, cihazOzellikAtama);	
 		}
 		return cihaz;
 	}		

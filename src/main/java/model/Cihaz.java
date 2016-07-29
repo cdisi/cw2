@@ -83,7 +83,15 @@ public class Cihaz {
 		return dao.getCihazDao();
 	}	
 	
-	public void save(Cihaz cihaz, Uretici uretici) throws SQLException{
+	public Cihaz findByName(String ad, Uretici uretici) throws SQLException {
+		return cihazDAO().findByName(ad, uretici);
+	}	
+	
+	public void insert(Cihaz cihaz, Uretici uretici) throws SQLException{
 		cihazDAO().insert(cihaz, uretici);
+	}	
+	
+	public void update(Cihaz cihaz, Uretici uretici) throws SQLException{
+		cihazDAO().update(cihaz, uretici);
 	}	
 }

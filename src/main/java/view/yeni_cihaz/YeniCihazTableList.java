@@ -14,13 +14,13 @@ import controllers.yeni_cihaz.YeniCihazController;
 import controllers.users.listeners.MailEvent;
 import controllers.users.listeners.UserListener;
 
-public class JTableList extends JTable implements EventListerner {
+public class YeniCihazTableList extends JTable implements EventListerner {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private TableModel model = new TableModel();
 
-	public JTableList() {
+	public YeniCihazTableList() {
 		this.setModel(model);
 		this.getTableHeader().setReorderingAllowed(false);
 		this.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -47,7 +47,7 @@ public class JTableList extends JTable implements EventListerner {
 		private static final long serialVersionUID = 1L;
 		
 		public TableModel() {
-			super(new Object[][]{}, new String[] {"ID", "Üretici Adý", "URL"});	 
+			super(new Object[][]{}, new String[] {"ID", "Uretici Adi", "URL"});	 
 		}
 		
 		@Override
@@ -85,9 +85,6 @@ public class JTableList extends JTable implements EventListerner {
 			}
 		}
 	}
-	
-	
-
 
 	public void cmdDetails() {
 		// TODO Auto-generated method stub

@@ -55,12 +55,12 @@ public class Parser {
 	}
 	
 	public String simBul(){
-		String sim = doc.select("a:contains(SIM)").first().parent().nextElementSibling().text().replace("Yes", "Var").replace("No", "Yok").replace("Single", "Tek").replace("Dual", "Çift");		
+		String sim = doc.select("a:contains(SIM)").first().parent().nextElementSibling().text().replace("Yes", "Var").replace("No", "Yok").replace("Single", "Tek").replace("Dual", "Çift").replace("Micro-SIM", "Mikro-SIM");		
 		return sim;
 	}
 
 	public String ikigBantBul(){
-		return doc.select("a:contains(2G bands)").first().parent().nextElementSibling().text();
+		return doc.select("a:contains(2G bands)").first().parent().nextElementSibling().text().replaceAll("N/A","Yok");
 	}
 	
 }

@@ -28,7 +28,15 @@ public class CihazOzellikAtama {
 		return dao.getCihazOzellikAtamaDao();
 	}	
 	
-	public void save(Cihaz cihaz, CihazOzellikAtama cihazOzellikAtama) throws SQLException{
-		cihazOzellikAtamaDao().insert(cihaz, cihazOzellikAtama);
+	public Boolean find(Cihaz cihaz, CihazOzellikAtama cihazOzellikAtama) throws SQLException {
+		return cihazOzellikAtamaDao().find(cihaz,cihazOzellikAtama);
 	}	
+	
+	public void insert(Cihaz cihaz, CihazOzellikAtama cihazOzellikAtama) throws SQLException{
+		cihazOzellikAtamaDao().insert(cihaz, cihazOzellikAtama);
+	}
+	public void update(Cihaz cihaz, CihazOzellikAtama cihazOzellikAtama) throws SQLException{
+		cihazOzellikAtamaDao().update(cihaz, cihazOzellikAtama);
+	}
+	
 }
